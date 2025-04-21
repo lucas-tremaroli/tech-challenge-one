@@ -1,10 +1,15 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
+from app.core.auth import validate_api_key
 
-app = FastAPI()
+app = FastAPI(
+    title="FastAPI",
+    description="A FastAPI application",
+    version="0.1.0",
+)
 
 
 @app.get("/")
-async def root():
+async def root(api_key: str = Depends(validate_api_key)):
     return {"message": "Hello World"}
 
 
