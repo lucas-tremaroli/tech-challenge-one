@@ -3,4 +3,5 @@
   <component name="Black">
     <option name="sdkName" value="Poetry (fast-api)" />
   </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="Poetry (tech-challenge-one)" project-jdk-type="Python SDK" />
 </project>
