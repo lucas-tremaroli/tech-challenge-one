@@ -1,5 +1,8 @@
 from fastapi import FastAPI
-from app.api.endpoints import production
+from app.api.endpoints import (
+    production,
+    auth
+)
 
 app = FastAPI(
     title="FastAPI",
@@ -8,3 +11,4 @@ app = FastAPI(
 )
 
 app.include_router(production.router)
+app.include_router(auth.router)
