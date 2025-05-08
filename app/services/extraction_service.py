@@ -2,7 +2,7 @@ import bs4
 import requests
 
 
-class ProductionService:
+class ExtractionService:
     def __init__(self):
         pass
 

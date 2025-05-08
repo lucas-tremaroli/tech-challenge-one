@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from app.api.endpoints import (
-    production,
+from app.api.v1 import (
+    embrapa,
     auth
 )
 
@@ -10,5 +10,5 @@ app = FastAPI(
     version="0.1.0",
 )
 
-app.include_router(production.router)
+app.include_router(embrapa.router)
 app.include_router(auth.router)
