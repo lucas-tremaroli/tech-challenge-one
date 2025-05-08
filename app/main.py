@@ -1,5 +1,4 @@
-from fastapi import FastAPI, Depends
-from app.core.auth import validate_api_key
+from fastapi import FastAPI
 from app.api.endpoints import production
 
 app = FastAPI(
