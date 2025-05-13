@@ -11,6 +11,5 @@ router = APIRouter(
 
 @router.get("/")
 async def ping():
-    table = es.get_production_data(year=2023)
-    data = es.parse(table)
+    data = es.get_production_data(year=2023)
     return data
