@@ -1,12 +1,14 @@
 from typing import Annotated
 from fastapi import APIRouter, Depends
-from app.services.production_service import ExtractionService
+from app.services.production_service import ProductionService
+from app.services.processing_service import ProcessingService
 from app.core.auth import (
     User,
     get_current_active_user
 )
 
-es = ExtractionService()
+production_service = ProductionService()
+processing_service = ProcessingService()
 
 router = APIRouter(
     prefix="/embrapa",
@@ -22,5 +24,16 @@ async def production(
     """
     This endpoint gets the production data for the given year.
     """
-    data = es.get_production_data(year)
+    data = production_service.get_production_data(year)
+    return data
+
+@router.get("/processing/{year}/{option}")
+async def processing(
+    year: int,
+    option: str,
+):
+    """
+    This endpoint gets the processing data for the given year and option.
+    """
+    data = processing_service.get_processing_data(year, option)
     return data
