@@ -1,6 +1,6 @@
 from typing import Annotated
 from fastapi import APIRouter, Depends
-from app.services.extraction_service import ExtractionService
+from app.services.production_service import ExtractionService
 from app.core.auth import (
     User,
     get_current_active_user
