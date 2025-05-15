@@ -30,7 +30,8 @@ async def production(
 @router.get("/processing/{year}/{option}")
 async def processing(
     year: int,
-    option: str,
+    option: int,
+    current_user: Annotated[User, Depends(get_current_active_user)]
 ):
     """
     This endpoint gets the processing data for the given year and option.
