@@ -1,9 +1,12 @@
+import logging
 from fastapi import FastAPI
 from app.core.config import settings
 from app.api.v1 import (
     embrapa,
     auth
 )
+
+logging.getLogger('passlib').setLevel(logging.ERROR)
 
 app = FastAPI(
     title=settings.title,
