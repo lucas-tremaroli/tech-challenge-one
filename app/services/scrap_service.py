@@ -2,9 +2,9 @@ import bs4
 import requests
 
 
-class ParsingService:
-    def __init__(self, url: str):
-        self.url = url
+class ScrapService:
+    def __init__(self):
+        pass
 
     @staticmethod
     def parse_quantity(qtd: str) -> int:
@@ -37,8 +37,8 @@ class ParsingService:
                 data.append(aux)
         return data
 
-    def get_data(self) -> list:
-        response = requests.get(self.url).content
+    def get_data(self, url: str) -> list:
+        response = requests.get(url).content
         soup = bs4.BeautifulSoup(response, "lxml")
         table = soup.find("table", class_="tb_dados")
         parsed_data = self.parse(table)

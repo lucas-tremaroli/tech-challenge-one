@@ -1,16 +1,15 @@
 from typing import Annotated
 from fastapi import APIRouter, Depends
-from app.services.production_service import ProductionService
-from app.services.processing_service import ProcessingService
-from app.services.commercial_service import CommercialService
+from app.schemas.endpoints import EndpointEnum
+from app.services.url_service import UrlService
+from app.services.scrap_service import ScrapService
 from app.core.auth import (
     User,
     get_current_active_user
 )
 
-production_service = ProductionService()
-processing_service = ProcessingService()
-commercial_service = CommercialService()
+url_service = UrlService()
+scrap_service = ScrapService()
 
 router = APIRouter(
     prefix="/embrapa",
@@ -26,7 +25,11 @@ async def production(
     """
     This endpoint gets the production data for the given year.
     """
-    data = production_service.get_production_data(year)
+    url = url_service.parse_url(
+        EndpointEnum.production,
+        year
+    )
+    data = scrap_service.get_data(url)
     return data
 
 
@@ -39,7 +42,12 @@ async def processing(
     """
     This endpoint gets the processing data for the given year and option.
     """
-    data = processing_service.get_processing_data(year, option)
+    url = url_service.parse_url(
+        EndpointEnum.processing,
+        year,
+        option
+    )
+    data = scrap_service.get_data(url)
     return data
 
 
@@ -51,5 +59,9 @@ async def commercial(
     """
     This endpoint gets the commercial data for the given year.
     """
-    data = commercial_service.get_commercial_data(year)
+    url = url_service.parse_url(
+        EndpointEnum.commercial,
+        year
+    )
+    data = scrap_service.get_data(url)
     return data
