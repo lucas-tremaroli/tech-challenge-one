@@ -29,6 +29,7 @@ async def production(
     data = production_service.get_production_data(year)
     return data
 
+
 @router.get("/processing/{year}/{option}")
 async def processing(
     year: int,
@@ -40,6 +41,7 @@ async def processing(
     """
     data = processing_service.get_processing_data(year, option)
     return data
+
 
 @router.get("/commercial/{year}")
 async def commercial(
