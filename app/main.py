@@ -18,3 +18,21 @@ app = FastAPI(
 
 app.include_router(auth.router)
 app.include_router(embrapa.router)
+
+@app.get("/")
+async def root():
+    """
+    Root endpoint.
+    """
+    return {
+        "message": "Welcome to my first Tech Challenge."
+    }
+
+@app.get("/health")
+async def health():
+    """
+    Health check endpoint.
+    """
+    return {
+        "status": "ok"
+    }

@@ -65,3 +65,21 @@ async def commercial(
     )
     data = scrap_service.get_data(url)
     return data
+
+
+@router.get("/import/{year}/{option}")
+async def export(
+    year: int,
+    option: int,
+    current_user: Annotated[User, Depends(get_current_active_user)]
+):
+    """
+    This endpoint gets the export data for the given year.
+    """
+    url = url_service.parse_url(
+        EndpointEnum.importation,
+        year,
+        option
+    )
+    data = scrap_service.get_data(url)
+    return data
