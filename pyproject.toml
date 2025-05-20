@@ -33,3 +33,7 @@ authors = ["lucas-tremaroli <lucasluigitremaroli@outlook.com>"]
 
 [tool.poetry.requires-plugins]
 poetry-plugin-export = ">=1.8"
+
+[tool.pyright]
+venvPath = "/Users/lucas/Library/Caches/pypoetry/virtualenvs/"
+venv = "app-T-6am30w-py3.13"
