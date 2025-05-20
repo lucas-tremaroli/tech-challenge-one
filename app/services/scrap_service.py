@@ -20,7 +20,7 @@ class ScrapService:
         category = category.replace(',', '')
         return category.lower()
 
-    def parse(self, table: bs4.BeautifulSoup) -> list:
+    def parse(self, table) -> list:
         rows = table.tbody.find_all('tr')
         data = []
         category = None

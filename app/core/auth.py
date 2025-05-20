@@ -35,7 +35,7 @@ def get_password_hash(password):
     return pwd_context.hash(password)
 
 
-def get_user(db, username: str):
+def get_user(db, username):
     if username in db:
         user_dict = db[username]
         return UserInDB(**user_dict)
