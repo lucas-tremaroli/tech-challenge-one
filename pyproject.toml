@@ -30,3 +30,6 @@ name = "app"
 version = "0.1.0"
 description = ""
 authors = ["lucas-tremaroli <lucasluigitremaroli@outlook.com>"]
+
+[tool.poetry.requires-plugins]
+poetry-plugin-export = ">=1.8"
