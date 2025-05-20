@@ -9,3 +9,4 @@ class EndpointEnum(str, Enum):
     processing = "http://vitibrasil.cnpuv.embrapa.br/index.php?ano={}&subopcao={}&opcao=opt_03"
     commercial = "http://vitibrasil.cnpuv.embrapa.br/index.php?ano={}&opcao=opt_04"
     importation = "http://vitibrasil.cnpuv.embrapa.br/index.php?ano={}&subopcao={}&opcao=opt_05"
+    exportation = "http://vitibrasil.cnpuv.embrapa.br/index.php?ano={}&subopcao={}&opcao=opt_06"

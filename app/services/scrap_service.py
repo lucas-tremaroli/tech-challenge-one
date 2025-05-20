@@ -17,6 +17,7 @@ class ScrapService:
         category = category.replace(' ', '_')
         category = category.replace('(', '')
         category = category.replace(')', '')
+        category = category.replace(',', '')
         return category.lower()
 
     def parse(self, table: bs4.BeautifulSoup) -> list:
