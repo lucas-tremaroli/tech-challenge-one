@@ -1,8 +1,11 @@
-[![Live Demo](https://raw.githubusercontent.com/your-username/your-repo/main/assets/live-demo-banner.png)](https://your-live-demo-url.com)
-
 # Tech Challenge API
 
 This is a FastAPI-based project designed to provide endpoints for authentication and data retrieval related to production, processing, and commercial activities. This project is part of a technical challenge and demonstrates the use of modern Python web development practices.
+
+Links:
+
+- [Visit the API](https://tech-challenge-one.onrender.com)
+- [Liv Demo](https://tech-challenge-one.onrender.com/docs)
 
 ## Architecture Diagram
 
@@ -43,7 +46,7 @@ To run the project locally, ensure you have Docker and Docker Compose installed.
 
 1. Clone the repository:
 ```bash
-gh repo clone <repository-url> && cd <repository-name>
+gh repo clone lucas-tremaroli/tech-challenge-one && cd tech-challenge-one
 ```
 2. Build and run the Docker container:
 ```bash
