@@ -13,7 +13,7 @@ scrap_service = ScrapService()
 
 router = APIRouter(
     prefix="/embrapa",
-    tags=["scrapping"],
+    tags=["Scrapping"],
 )
 
 

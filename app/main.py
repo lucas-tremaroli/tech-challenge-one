@@ -19,7 +19,7 @@ app = FastAPI(
 app.include_router(auth.router)
 app.include_router(embrapa.router)
 
-@app.get("/")
+@app.get("/", tags=["Root"])
 async def root():
     """
     Root endpoint.
@@ -28,7 +28,7 @@ async def root():
         "message": "Welcome to my first Tech Challenge."
     }
 
-@app.get("/health")
+@app.get("/health", tags=["Health"])
 async def health():
     """
     Health check endpoint.
