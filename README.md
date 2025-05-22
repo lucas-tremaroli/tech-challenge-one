@@ -1,11 +1,9 @@
 # Tech Challenge API
 
+[![Static Badge](https://img.shields.io/badge/video-ededed?style=for-the-badge&logo=youtube&logoColor=red)](https://www.youtube.com)
+[![Static Badge](https://img.shields.io/badge/live-lightgreen?style=for-the-badge&logo=render&label=demo)](https://tech-challenge-one.onrender.com)
+
 This is a FastAPI-based project designed to provide endpoints for authentication and data retrieval related to production, processing, and commercial activities. This project is part of a technical challenge and demonstrates the use of modern Python web development practices.
-
-Links:
-
-- [Visit the API](https://tech-challenge-one.onrender.com)
-- [Liv Demo](https://tech-challenge-one.onrender.com/docs)
 
 ## Architecture Diagram
 
@@ -45,13 +43,17 @@ This structure promotes modularity and makes the codebase easier to navigate and
 To run the project locally, ensure you have Docker and Docker Compose installed. Follow these steps:
 
 1. Clone the repository:
-```bash
-gh repo clone lucas-tremaroli/tech-challenge-one && cd tech-challenge-one
-```
+
+    ```bash
+    gh repo clone lucas-tremaroli/tech-challenge-one && cd tech-challenge-one
+    ```
+
 2. Build and run the Docker container:
-```bash
-docker-compose up --build
-```
+
+    ```bash
+    docker-compose up --build
+    ```
+
 3. Access the API at `http://localhost:8000`.
 4. Use the Swagger UI at `http://localhost:8000/docs` to interact with the API.
 5. Use the ReDoc UI at `http://localhost:8000/redoc` for API documentation.
