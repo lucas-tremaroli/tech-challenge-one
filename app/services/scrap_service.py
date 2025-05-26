@@ -1,10 +1,11 @@
 import bs4
 import requests
+from app.core.cache import Cache
 
 
 class ScrapService:
     def __init__(self):
-        pass
+        self.cache = Cache()
 
     @staticmethod
     def parse_quantity(qtd: str) -> int:
@@ -38,9 +39,19 @@ class ScrapService:
                 data.append(aux)
         return data
 
-    def get_data(self, url: str) -> list:
-        response = requests.get(url).content
+    def get_data(self, url: str):
+        cached_data = self.cache.fallback(url)
+        if cached_data:
+            return cached_data
+        try:
+            response = requests.get(url).content
+        except requests.exceptions.ConnectionError:
+            cached_data = self.cache.fallback(url)
+            if cached_data:
+                return cached_data
+            return Exception("Failed to connect to the URL")
         soup = bs4.BeautifulSoup(response, "lxml")
         table = soup.find("table", class_="tb_dados")
         parsed_data = self.parse(table)
+        self.cache.set(url, str(parsed_data))
         return parsed_data

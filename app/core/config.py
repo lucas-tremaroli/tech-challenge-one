@@ -1,4 +1,5 @@
-from pydantic_settings import BaseSettings
+from functools import lru_cache
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 markdown_description = """
@@ -20,4 +21,13 @@ class Settings(BaseSettings):
         "url": "https://github.com/lucas-tremaroli/tech-challenge-one",
     }
 
-settings = Settings()
+    REDIS_HOST: str = "redis"
+    REDIS_PORT: int = 6379
+
+    model_config = SettingsConfigDict(
+        case_sensitive=False,
+    )
+
+@lru_cache()
+def get_settings() -> Settings:
+    return Settings()
