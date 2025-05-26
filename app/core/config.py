@@ -19,5 +19,7 @@ class Settings(BaseSettings):
         "name": "GitHub project",
         "url": "https://github.com/lucas-tremaroli/tech-challenge-one",
     }
+    redis_host: str = "redis"
+    redis_port: int = 6379
 
 settings = Settings()

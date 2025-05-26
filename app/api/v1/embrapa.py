@@ -1,12 +1,9 @@
 from typing import Annotated
-from fastapi import APIRouter, Depends
-from app.schemas.endpoints import EndpointEnum
+from fastapi import APIRouter, Depends, HTTPException
 from app.services.url_service import UrlService
 from app.services.scrap_service import ScrapService
-from app.core.auth import (
-    User,
-    get_current_active_user
-)
+from app.core.auth import User, get_current_active_user
+from app.schemas.endpoints import EndpointEnum, ConnectionError
 
 url_service = UrlService()
 scrap_service = ScrapService()
@@ -17,7 +14,10 @@ router = APIRouter(
 )
 
 
-@router.get("/production/{year}")
+@router.get(
+    "/production/{year}",
+    responses={500: {"model": ConnectionError}}
+)
 async def production(
     year: int,
     current_user: Annotated[User, Depends(get_current_active_user)]
@@ -30,10 +30,18 @@ async def production(
         year
     )
     data = scrap_service.get_data(url)
+    if isinstance(data, Exception):
+        raise HTTPException(
+            status_code=500,
+            detail=str(data)
+        )
     return data
 
 
-@router.get("/processing/{year}/{option}")
+@router.get(
+    "/processing/{year}/{option}",
+    responses={500: {"model": ConnectionError}}
+)
 async def processing(
     year: int,
     option: int,
@@ -48,10 +56,18 @@ async def processing(
         option
     )
     data = scrap_service.get_data(url)
+    if isinstance(data, Exception):
+        raise HTTPException(
+            status_code=500,
+            detail=str(data)
+        )
     return data
 
 
-@router.get("/commercial/{year}")
+@router.get(
+    "/commercial/{year}",
+    responses={500: {"model": ConnectionError}}
+)
 async def commercial(
     year: int,
     current_user: Annotated[User, Depends(get_current_active_user)]
@@ -64,10 +80,18 @@ async def commercial(
         year
     )
     data = scrap_service.get_data(url)
+    if isinstance(data, Exception):
+        raise HTTPException(
+            status_code=500,
+            detail=str(data)
+        )
     return data
 
 
-@router.get("/import/{year}/{option}")
+@router.get(
+    "/import/{year}/{option}",
+    responses={500: {"model": ConnectionError}}
+)
 async def importation(
     year: int,
     option: int,
@@ -82,9 +106,17 @@ async def importation(
         option
     )
     data = scrap_service.get_data(url)
+    if isinstance(data, Exception):
+        raise HTTPException(
+            status_code=500,
+            detail=str(data)
+        )
     return data
 
-@router.get("/export/{year}/{option}")
+@router.get(
+    "/export/{year}/{option}",
+    responses={500: {"model": ConnectionError}}
+)
 async def exportation(
     year: int,
     option: int,
@@ -99,4 +131,9 @@ async def exportation(
         option
     )
     data = scrap_service.get_data(url)
+    if isinstance(data, Exception):
+        raise HTTPException(
+            status_code=500,
+            detail=str(data)
+        )
     return data
