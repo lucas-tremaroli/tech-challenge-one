@@ -3,22 +3,26 @@
 [![Static Badge](https://img.shields.io/badge/video-ededed?style=for-the-badge&logo=youtube&logoColor=red)](https://www.youtube.com)
 [![Static Badge](https://img.shields.io/badge/live-lightgreen?style=for-the-badge&logo=render&label=demo)](https://tech-challenge-one.onrender.com)
 
-This is a FastAPI-based project designed to provide endpoints for authentication and data retrieval related to production, processing, and commercial activities. This project is part of a technical challenge and demonstrates the use of modern Python web development practices.
+## The Problem
+
+This project provides REST API endpoints for authentication and data retrieval concerning production, processing, and commercial activities in vitiviniculture. These endpoints are designed to serve data directly to machine learning models, dashboards, and notebooks.
 
 ## Architecture Diagram
 
 ![Architecture Diagram](./assets/architecture_diagram.png)
 
-### Deployment
+### Tech Stack
 
-The project is deployed as a Docker container to Render, the integration with GitHub allows for automatic deployment on every push to the main branch.
+* **Core API Development:** Python, FastAPI, Pydantic (data validation and settings).
+* **Authentication:** JWT (secure user authentication and authorization).
+* **Infrastructure & Deployment:** Docker (containerization), Poetry (dependency management), Redis (caching), Render (cloud deployment).
+* **Data Acquisition:** BeautifulSoup and Requests (web scraping).
 
 ### User Flow
 
-1. **User Authentication**: The user sends a request to the `/login` endpoint with their credentials.
-2. **Token Generation**: If the credentials are valid, a JWT token is generated and returned to the user.
-3. **Data Retrieval**: The user can use the token to access protected `/embrapa` endpoints.
-4. **Data Processing**: The data is processed and returned in a structured JSON format.
+1.  **Authentication**: Users authenticate by sending credentials to the `/auth/token` endpoint, receiving a JWT in return.
+2.  **Data Access**: The JWT is then used to access and retrieve data from protected `/embrapa` endpoints.
+3.  **JSON Output**: All data is provided in a structured JSON format to be consumed.
 
 ### Services
 
