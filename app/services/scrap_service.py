@@ -1,6 +1,9 @@
 import bs4
+import logging
 import requests
 from app.core.cache import Cache
+
+logger = logging.getLogger(__name__)
 
 
 class ScrapService:
@@ -40,15 +43,20 @@ class ScrapService:
         return data
 
     def get_data(self, url: str):
+        logger.info(f"Fetching data from URL: {url}")
         cached_data = self.cache.fallback(url)
         if cached_data:
+            logger.info("Returning cached data")
             return cached_data
         try:
             response = requests.get(url).content
         except requests.exceptions.ConnectionError:
+            logger.error(f"Failed to connect to the URL: {url}")
             cached_data = self.cache.fallback(url)
             if cached_data:
+                logger.info("Returning cached data after connection error")
                 return cached_data
+            logger.error("No cached data available, returning exception")
             return Exception("Failed to connect to the URL")
         soup = bs4.BeautifulSoup(response, "lxml")
         table = soup.find("table", class_="tb_dados")
