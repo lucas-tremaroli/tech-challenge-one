@@ -1,11 +1,13 @@
 import redis
 from redis.typing import ResponseT
-from app.core.config import settings
+from app.core.config import get_settings
+
+settings = get_settings()
 
 class Cache:
     def __init__(self):
-        self.host = settings.redis_host
-        self.port = settings.redis_port
+        self.host = settings.REDIS_HOST
+        self.port = settings.REDIS_PORT
         self.client = redis.Redis(host=self.host, port=self.port, decode_responses=True)
 
     def set(self, key: str, value: str) -> None:
