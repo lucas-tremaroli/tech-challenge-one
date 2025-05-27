@@ -1,6 +1,8 @@
+import json
 import redis
 from redis.typing import ResponseT
 from app.core.config import get_settings
+from posix import replace
 
 settings = get_settings()
 
@@ -20,4 +22,10 @@ class Cache:
         self.client.delete(key)
 
     def fallback(self, key: str) -> ResponseT:
-        return self.get(key) if self.client.exists(key) else None
+        if self.client.exists(key):
+            data = self.get(key)
+            data = str(data).replace("'", '"')
+            json_data = json.loads(data)
+            return json_data
+        else:
+            return None
