@@ -45,15 +45,17 @@ class ScrapService:
 
     def get_data(self, url: str):
         try:
+            # Attempt to get data from url first
             response = requests.get(url).content
         except requests.exceptions.ConnectionError:
             logger.error(f"Failed to connect to the URL: {url}")
+            # Attempt to get cached data if connection fails
             cached_data = self.cache.fallback(url)
             if cached_data:
                 logger.warning("Returning cached data after connection error")
                 return cached_data
             logger.error("No cached data available, returning exception")
-            return Exception("Failed to connect to the URL")
+            return Exception("Failed to connect to the URL, and no cached data available.")
         soup = bs4.BeautifulSoup(response, "lxml")
         table = soup.find("table", class_="tb_dados")
         parsed_data = self.parse(table)
