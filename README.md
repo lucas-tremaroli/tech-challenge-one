@@ -1,6 +1,6 @@
 # Tech Challenge API
 
-[![Static Badge](https://img.shields.io/badge/video-ededed?style=for-the-badge&logo=youtube&logoColor=red)](https://www.youtube.com)
+[![Static Badge](https://img.shields.io/badge/video-ededed?style=for-the-badge&logo=youtube&logoColor=red)](https://youtu.be/JFRQ2YJR1P0?si=BwSlCl58nKsWBZEh)
 [![Static Badge](https://img.shields.io/badge/live-lightgreen?style=for-the-badge&logo=render&label=demo)](https://tech-challenge-one.onrender.com)
 
 ## The Problem
